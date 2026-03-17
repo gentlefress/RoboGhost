@@ -1,6 +1,9 @@
-# 🤖 From Language To Locomotion: Retargeting-free Humanoid Control via Motion Latent Guidance
-
 <div align="center">
+
+<!-- 项目图标 -->
+<img src="fig/icon.png" width="120px" alt="RoboGhost Icon"/>
+
+# From Language To Locomotion Retargeting-free Humanoid Control via Motion Latent Guidance
 
 **Accepted by ICLR 2026**
 
