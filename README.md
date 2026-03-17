@@ -27,7 +27,7 @@ You can command humanoids to perform complex motions using natural language, wit
 - Clone this repository separately from the Isaac Lab installation (i.e., outside the `IsaacLab` directory),Place the whole_body_tracking under RoboGhost in the same level directory of IsaacLab:
 ```bash
 
-git clone https://github.com/q2reqr/RoboGhost.git
+git clone https://github.com/gentlefress/RoboGhost.git
 ```
 
 
