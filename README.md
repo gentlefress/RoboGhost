@@ -18,6 +18,18 @@
 
 </div>
 
+## 🗞️ News
+- **`2026-03-17`**: 🔥🔥🔥 We released the code of RoboGhost! Welcome to Star!⭐
+- **`2026-01-23`**: 🔥🔥 **RoboGhost** gets accepted to **ICLR 2026**! See you in Denver, Colorado, USA!
+- **`2025-10-02`**: 🔥 We released our [Project Page](https://gentlefress.github.io/roboghost-proj/) of **RoboGhost**.
+
+
+## 🎯 TODO
+- [x] Release the training codes and inference codes of RoboGhost.
+- [x] Release the project page of RoboGhost.
+
+
+
 ## 📌 Overview
 
 **RoboGhost** is a retargeting-free framework that enables language-guided humanoid control via motion latents. 
