@@ -19,7 +19,7 @@
 </div>
 
 ## 🗞️ News
-- **`2026-03-17`**: 🔥🔥🔥 We released the code of RoboGhost! Welcome to Star!⭐
+- **`2026-03-17`**: 🔥🔥🔥 We released the code of **RoboGhost**! Welcome to Star!⭐
 - **`2026-01-23`**: 🔥🔥 **RoboGhost** gets accepted to **ICLR 2026**! See you in Rio, Brazil!
 - **`2025-10-02`**: 🔥 We released our [Project Page](https://gentlefress.github.io/roboghost-proj/) of **RoboGhost**.
 
