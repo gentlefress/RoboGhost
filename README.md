@@ -110,3 +110,11 @@ We use publicly available human motion datasets, including [Humanml](https://git
 [mujoco](https://github.com/google-deepmind/mujoco.git): Providing powerful simulation functionalities.
 [unitree\_sdk2\_python](https://github.com/unitreerobotics/unitree_sdk2_python.git): Hardware communication interface for physical deployment.
 
+## 🔖 License
+
+This project is licensed under the [BSD 3-Clause License](./LICENSE):
+1. The original copyright notice must be retained.
+2. The project name or organization name may not be used for promotion.
+3. Any modifications must be disclosed.
+
+For details, please read the full [LICENSE file](./LICENSE).
