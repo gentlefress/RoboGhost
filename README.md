@@ -1,54 +1,70 @@
-# 🤖 RoboGhost 
+# 🤖 From Language To Locomotion: Retargeting-free Humanoid Control via Motion Latent Guidance
 
+<div align="center">
+
+**Accepted by ICLR 2026**
+
+[![Website](https://img.shields.io/badge/Project-Website-8A2BE2)](https://gentlefress.github.io/roboghost-proj/)
+[![Arxiv](https://img.shields.io/badge/arXiv-2510.14952-B31B1B.svg)](https://arxiv.org/html/2510.14952)
 [![IsaacSim](https://img.shields.io/badge/IsaacSim-4.5.0-silver.svg)](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html)
 [![Isaac Lab](https://img.shields.io/badge/IsaacLab-2.1.0-silver)](https://isaac-sim.github.io/IsaacLab)
 [![Python](https://img.shields.io/badge/python-3.10-blue.svg)](https://docs.python.org/3/whatsnew/3.10.html)
-[![Linux platform](https://img.shields.io/badge/platform-linux--64-orange.svg)](https://releases.ubuntu.com/20.04/)
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://pre-commit.com/)
-[![License](https://img.shields.io/badge/license-MIT-yellow.svg)](https://opensource.org/license/mit)
+[![License](https://img.shields.io/badge/license-BSD--3--Clause-blue.svg)](./LICENSE)
 
-[[Website]](https://gentlefress.github.io/roboghost-proj/)
-[[Arxiv]](https://arxiv.org/html/2510.14952)
+<img src="fig/roboghost.png" width="100%"/>
+
+</div>
 
 ## 📌 Overview
 
-RoboGhost is a retargeting-free framework that enables language-guided humanoid control via motion latents.
+**RoboGhost** is a retargeting-free framework that enables language-guided humanoid control via motion latents. 
 
-Unlike traditional pipelines that require motion decoding and retargeting, RoboGhost directly conditions a diffusion-based policy on language-generated motion latents. This eliminates error-prone intermediate stages, reducing deployment latency from 17.85s to 5.84s while improving control precision.
+Unlike traditional pipelines that require complex motion decoding and manual retargeting, RoboGhost directly conditions a diffusion-based policy on language-generated **motion latents**. This eliminates error-prone intermediate stages, reducing deployment latency from **17.85s to 5.84s** while significantly improving control precision.
 
-You can command humanoids to perform complex motions using natural language, without manual tuning or retargeting.
+You can command humanoids to perform complex motions using natural language, without the need for manual joint tuning or retargeting for different robot morphologies.
 
+## 🏗️ Framework
+
+<div align="center">
+<img src="fig/framework.png" width="100%"/>
+</div>
+
+---
 
 ## ⚙️ Installation
 
-- Install Isaac Lab v2.1.0 by following
-  the [installation guide](https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/index.html). 
+1.  **Install Isaac Lab v2.1.0**: Follow the [official installation guide](https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/index.html).
 
-- Clone this repository separately from the Isaac Lab installation (i.e., outside the `IsaacLab` directory),Place the whole_body_tracking under RoboGhost in the same level directory of IsaacLab:
+2.  **Clone the Repository**: Place `whole_body_tracking` under `RoboGhost` in the same level directory as `IsaacLab`:
+    ```bash
+    git clone https://github.com/gentlefress/RoboGhost.git
+    ```
+
+3.  **Configuration Patch**:
+    Replace `rl_cfg.py` in your Isaac Lab directory with the `rl_cfg.py` located in the root of this repository to ensure compatibility.
+
+4.  **Install Library**:
+    Using the Python interpreter associated with your Isaac Lab installation:
+    ```bash
+    python -m pip install -e source/whole_body_tracking
+    ```
+
+## 📊 Data
+Download the training data from [Hugging Face](https://huggingface.co/datasets/SanQing1/RoboGhost/tree/main):
+- **`roboghost_all.pkl`**: Motion dataset.
+- **`general.pt`**: Pre-trained motion latents.
+
+---
+
+## 🚀 Training
+
+### 1. Teacher Policy Training
 ```bash
-
-git clone https://github.com/gentlefress/RoboGhost.git
-```
-
-
-- Replace **rl_cfg.py** in the Isaac Lab directory with **rl_cfg.py**  in the root directory of this repo
-
-- Using a Python interpreter that has Isaac Lab installed, install the library
-
-```bash
-python -m pip install -e source/whole_body_tracking
-```
-
-## 📊  Data
-- Provide a subset of the training data here: https://huggingface.co/datasets/SanQing1/RoboGhost/tree/main, which contains **`roboghost_all.pkl`** and **`general.pt`**. You can download them to any location.
-## 🚀 Train
-
-### Teacher Policy Training
-
-- Train teacher policy by the following command:
-
-```bash
-python scripts/rsl_rl/train.py --task=Tracking-Flat-G1-Wo-State-Estimation-v0 \--headless --logger wandb --log_project_name {project_name} --run_name {run_name} --pkl_path /path/to/roboghost_all.pkl
+python scripts/rsl_rl/train.py --task=Tracking-Flat-G1-Wo-State-Estimation-v0 \
+  --headless --logger wandb \
+  --log_project_name {project_name} \
+  --run_name {run_name} \
+  --pkl_path /path/to/roboghost_all.pkl
 ```
 
 ### Student Policy Training
