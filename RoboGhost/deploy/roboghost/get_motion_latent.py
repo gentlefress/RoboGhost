@@ -4,13 +4,15 @@ import numpy as np
 import torch.nn.functional as F
 
 class get_motion_latent():
-    def __init__(self):
+    def __init__(self, motion_latent_path=None):
         self._device = 'cpu'
+        self.motion_latent_path = motion_latent_path
         self.load_motion_latent()
         self.pad_and_reorganize()
+        
 
     def load_motion_latent(self):
-        motion_latent_path = '/home/baai/humanoid/roboghost/unitree_rl_gym/roboghost/motion_latent/general.pt'
+        motion_latent_path = self.motion_latent_path
         self.motion_latents = torch.load(motion_latent_path)
 
     def pad_and_reorganize(self):

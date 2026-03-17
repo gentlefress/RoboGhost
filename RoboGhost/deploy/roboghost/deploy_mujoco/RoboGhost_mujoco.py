@@ -16,10 +16,10 @@ import onnxruntime
 import signal
 import sys
 import os
-sys.path.append("/home/roboghost/unitree_rl_gym/")
-from roboghost.get_motion_latent import get_motion_latent
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from get_motion_latent import get_motion_latent
 
-xml_path = "../unitree_description/mjcf/g1_liao.xml"
+xml_path = "./unitree_description/mjcf/g1_liao.xml"
 
 # Total simulation time
 simulation_duration = 300.0
@@ -152,14 +152,19 @@ action_scale = np.array([0.548, 0.548, 0.548, 0.351, 0.351, 0.439, 0.548, 0.548,
 
 if __name__ == "__main__":
     # get config file name from command line
-
     import argparse
-    
+
     num_actions = 29
     num_obs = 1144
     import onnx
+    
     # your checkpoint path
-    policy_path = '/home/roboghost/unitree_rl_gym/roboghost/ckpt/general_250/model_55000.onnx'
+    parser = argparse.ArgumentParser(description="Sim2Sim with ONNX policy.")
+    parser.add_argument("--onnx_path", type=str, required=True, help="The path of onnx model.")
+    parser.add_argument("--motion_latent_path", type=str, required=True, help="The path of motion latent.")
+    parser.add_argument("--motion_id", type=int, required=True, help="select motion id.")
+    cli_args = parser.parse_args()
+    policy_path = cli_args.onnx_path
     print('load_policy_from:', policy_path)
     model = onnxruntime.InferenceSession(policy_path)
     metadata = {
@@ -179,11 +184,11 @@ if __name__ == "__main__":
 
                 
     policy = model
-    load_motion_latent = get_motion_latent()
+    load_motion_latent = get_motion_latent(motion_latent_path=cli_args.motion_latent_path)
     action_buffer = np.zeros((num_actions,), dtype=np.float32)
     timestep = 0
-    motion_ids = torch.tensor([11], device=load_motion_latent._device)
-    print("Current IDs", motion_ids.item())
+    motion_id = torch.tensor([cli_args.motion_id], device=load_motion_latent._device)
+    print("Current IDs", motion_id.item())
     target_dof_pos = joint_pos_array.copy()
     d.qpos[7:] = target_dof_pos
     body_name = "torso_link"
@@ -206,7 +211,7 @@ if __name__ == "__main__":
                 counter += 1
                 if counter % control_decimation == 0:
 
-                    motion_latent = load_motion_latent.get_motion_latent(motion_ids, timestep)
+                    motion_latent = load_motion_latent.get_motion_latent(motion_id, timestep)
 
                     qpos_xml = d.qpos[7:7 + num_actions]
                     qpos_seq = np.array([qpos_xml[joint_xml.index(joint)] for joint in joint_seq])
