@@ -20,7 +20,10 @@
 
 ## 🗞️ News
 - **`2026-03-17`**: 🔥🔥🔥 We released the code of **RoboGhost**! Welcome to Star!⭐
+- **`2026-02-21`**: 🔥🔥 Related work **RoboPerform** gets accepted to **CVPR 2026**! See you in Danver!
 - **`2026-01-23`**: 🔥🔥 **RoboGhost** gets accepted to **ICLR 2026**! See you in Rio, Brazil!
+- **`2025-12-04`**: 🔥 We released our [Project Page](https://gentlefress.github.io/RoboMirror-proj/) of **RoboMirror**.
+- **`2025-12-04`**: 🔥 We released our [Project Page](https://gentlefress.github.io/RoboPerform-proj/) of **RoboPerform**.
 - **`2025-10-02`**: 🔥 We released our [Project Page](https://gentlefress.github.io/roboghost-proj/) of **RoboGhost**.
 
 
@@ -149,3 +152,13 @@ This project is licensed under the [BSD 3-Clause License](./LICENSE):
 3. Any modifications must be disclosed.
 
 For details, please read the full [LICENSE file](./LICENSE).
+
+If you find our code or paper helpful, please consider starring our repository and citing:
+```
+@article{li2025language,
+  title={From language to locomotion: Retargeting-free humanoid control via motion latent guidance},
+  author={Li, Zhe and Chi, Cheng and Wei, Yangyang and Zhu, Boan and Peng, Yibo and Huang, Tao and Wang, Pengwei and Wang, Zhongyuan and Zhang, Shanghang and Xu, Chang},
+  journal={arXiv preprint arXiv:2510.14952},
+  year={2025}
+}
+```
